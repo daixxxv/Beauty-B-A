@@ -190,4 +190,4 @@ https://www.figma.com/design/SzEPPmRup5PMZRT3wYE1Ec/Beauty-B-A%E3%80%80%E7%94%BB
 
 ### ER図
 
-https://gyazo.com/64ba185fc62cffd7d9ff2748809be09e
+https://gyazo.com/403784960ae9e9ad770446525b7f71bc
