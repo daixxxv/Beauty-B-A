@@ -1,12 +1,12 @@
+<main class="max-w-7xl mx-auto px-6 h-[calc(100vh-64px)] flex flex-col justify-between py-4">
 
-<main class="max-w-7xl mx-auto px-6">
-
-  <section class="min-h-[calc(100vh-88px)] flex md:flex-col gap-8 items-center">
+  <%# メインコンテンツエリア：縦に均等配置して要素を収める %>
+  <section class="flex-1 flex flex-col justify-center items-center gap-6">
 
     <!-- 上側：メッセージ -->
     <div class="order-1 md:order-1">
 
-      <h2 class="text-center text-4xl md:text-6xl font-serif tracking-wide leading-tight text-blue-700">
+      <h2 class="text-center text-4xl md:text-6xl font-serif tracking-wide leading-tight text-blue-400">
         Beauty B/A<br>
       </h2>
 
@@ -29,9 +29,9 @@
     <div class="order-3 md:order-3 text-center">
       <% unless user_signed_in? %>
         <%= link_to new_user_registration_path,
-            class: "inline-flex items-center justify-center gap-4 mt-10 bg-blue-300 hover:bg-blue-400 text-white px-10 py-4 rounded-full transition duration-300" do %>
+            class: "inline-flex items-center justify-center gap-4 mt-10 bg-blue-500 hover:bg-blue-500 text-white px-10 py-4 rounded-full transition duration-300" do %>
 
-          sign up
+          新規登録
           <span>→</span>
       
 
