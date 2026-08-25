@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  get "albums/index"
   devise_for :users, controllers: {
     passwords: "users/passwords"
   }
   root "top#index"
+
+  # アルバムとレコードのネストしたルーティング
+  resources :albums do
+    resources :records
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
