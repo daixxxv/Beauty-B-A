@@ -65,6 +65,7 @@ ja:
     attributes:
       user:
         reset_password_token: "パスワード再設定用トークン"
+        current_password: "現在のパスワード"
         password: "新しいパスワード"
         password_confirmation: "新しいパスワード（確認）"
     errors:
@@ -73,3 +74,8 @@ ja:
           attributes:
             reset_password_token:
               invalid: "が無効です。もう一度最初からお手続きください。"
+      messages:
+        blank: "を入力してください"
+        invalid: "は不正な値です"
+        confirmation: "が一致しません"
+        too_short: "は%{count}文字以上で入力してください"
