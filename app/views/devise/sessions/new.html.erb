@@ -27,7 +27,7 @@
         <%= f.email_field :email,
           autofocus: true,
           autocomplete: "email",
-          class: "w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-rose-300" %>
+          class: "w-full rounded-xl border border-gray-200 px-4 py-3 border-solid transition duration-200 hover:border-blue-400 focus:border-blue-400 focus:ring-blue-400 focus:outline-none" %>
 
       </div>
 
@@ -40,7 +40,7 @@
 
         <%= f.password_field :password,
           autocomplete: "current-password",
-          class: "w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-rose-300" %>
+          class: "w-full rounded-xl border border-gray-200 px-4 py-3 border-solid transition duration-200 hover:border-blue-400 focus:border-blue-400 focus:ring-blue-400 focus:outline-none" %>
 
       </div>
 
@@ -51,8 +51,8 @@
           <%= f.check_box :remember_me,
             class: "mr-2" %>
 
-          <%= f.label :ログイン状態を維持する,
-            class: "text-sm text-gray-600" %>
+          <%= f.label :remember_me, "ログイン状態を維持する",
+            class: "text-sm text-gray-600 cursor-pointer" %>
 
         </div>
 
@@ -61,7 +61,7 @@
       <div class="actions">
 
         <%= f.submit "ログイン",
-          class: "w-full bg-blue-500 hover:bg-blue-500 text-white rounded-full py-3 text-sm transition duration-300 cursor-pointer" %>
+          class: "w-full bg-blue-500 hover:bg-blue-600 text-white rounded-full py-3 text-sm transition duration-300 cursor-pointer" %>
 
       </div>
 

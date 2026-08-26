@@ -17,14 +17,12 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
     <% @albums.each do |album| %>
 
-      <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-md transition duration-300 flex flex-col justify-between">
+      <%= link_to album_path(album), class: "border border-gray-200 rounded-2xl p-6 bg-white shadow-md transition duration-300 flex flex-col justify-between group hover:shadow-lg hover:-translate-y-1 transform" do %>
 
         <div class="mb-4">
 
-          <h2 class="text-xl mb-4">
-            <%= link_to album.title,
-              album_path(album),
-              class: "text-gray-700 hover:text-blue-400 transition duration-300" %>
+          <h2 class="text-xl mb-4 text-gray-700 transition duration-300 group-hover:text-blue-400" %>
+            <%= album.title %>
           </h2>
 
           <%# <% if album.photos.attached? %>
@@ -42,10 +40,10 @@
         </p>
 
         <p class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-600">
-          開始日：<%= album.started_on %>
+          開始日：<%= album.started_on&.strftime('%Y/%m/%d') %>
         </p>
 
-      </div>
+      <% end %>
 
     <% end %>
 
