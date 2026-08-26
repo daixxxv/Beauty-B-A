@@ -11,10 +11,10 @@ class AlbumsController < ApplicationController
 
   def show
     @album = current_user.albums.find(params[:id])
-    #@album = current_user.albums.includes(:records).find(params[:id])記録機能作ったらこっちに直す
+    # @album = current_user.albums.includes(:records).find(params[:id])記録機能作ったらこっちに直す
 
-    #@before_record = @album.before_record
-    #@after_record = @album.after_record
+    # @before_record = @album.before_record
+    # @after_record = @album.after_record
   end
 
   def edit
