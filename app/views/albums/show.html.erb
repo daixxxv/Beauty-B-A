@@ -37,23 +37,16 @@
 
       <div class="border border-gray-200 rounded-2xl p-4">
 
-        <p class="text-xs tracking-widest uppercase text-blue-500 mb-3">
+        <p class="text-xs tracking-widest uppercase text-blue-500 mb-3 font-semibold">
           Before
         </p>
 
-        <% if @before_record&.image&.attached? %>
-          <%= image_tag @before_record.image,
-              class: "w-full rounded-xl" %>
+        <% if @album.before_image.attached? %>
+          <%= image_tag @album.before_image, class: "w-full aspect-square object-cover rounded-xl" %>
         <% else %>
-          <div class="aspect-square bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
+          <div class="aspect-square bg-gray-100 rounded-xl flex items-center justify-center text-gray-400 text-sm">
             No Image
           </div>
-        <% end %>
-
-        <% if @before_record %>
-          <p class="mt-3 text-sm text-gray-500">
-            <%= @before_record.recorded_on.strftime('%Y/%m/%d') %>
-          </p>
         <% end %>
 
       </div>
@@ -65,19 +58,12 @@
           After
         </p>
 
-        <% if @after_record&.image&.attached? %>
-          <%= image_tag @after_record.image,
-              class: "w-full rounded-xl" %>
+        <% if @album.after_image.attached? %>
+          <%= image_tag @album.after_image, class: "w-full aspect-square object-cover rounded-xl" %>
         <% else %>
-          <div class="aspect-square bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
+          <div class="aspect-square bg-gray-100 rounded-xl flex items-center justify-center text-gray-400 text-sm">
             No Image
           </div>
-        <% end %>
-
-        <% if @after_record %>
-          <p class="mt-3 text-sm text-gray-500">
-            <%= @after_record.recorded_on.strftime('%Y/%m/%d') %>
-          </p>
         <% end %>
 
       </div>
@@ -161,4 +147,16 @@
 
   </div>
 
+</div>
+
+<%# ===== デバッグ用コード（確認後に削除してください） ===== %>
+<div class="mt-12 p-6 bg-gray-900 text-green-400 rounded-2xl font-mono text-xs leading-relaxed overflow-x-auto">
+  <p class="font-bold text-white mb-2">🔍 デバッグ情報</p>
+  <p>1. before_record_id (保存されているID): <%= @album.before_record_id.inspect %></p>
+  <p>2. @before_record (取得できているか): <%= @before_record.inspect %></p>
+  <p>3. 画像が添付されているか: <%= @before_record&.image&.attached?.inspect %></p>
+  <hr class="my-2 border-gray-700">
+  <p>4. after_record_id (保存されているID): <%= @album.after_record_id.inspect %></p>
+  <p>5. @after_record (取得できているか): <%= @after_record.inspect %></p>
+  <p>6. 画像が添付されているか: <%= @after_record&.image&.attached?.inspect %></p>
 </div>

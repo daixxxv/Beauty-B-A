@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  album: one
+  recorded_on: 2026-08-28
+  memo: MyText
+
+two:
+  album: two
+  recorded_on: 2026-08-28
+  memo: MyText
