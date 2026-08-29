@@ -13,8 +13,8 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.find(params[:id])
     # @album = current_user.albums.includes(:records).find(params[:id])記録機能作ったらこっちに直す
 
-    # @before_record = @album.before_record
-    # @after_record = @album.after_record
+    @before_record = @album.before_record
+    @after_record = @album.after_record
   end
 
   def edit
@@ -51,6 +51,6 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(:title, :description, :started_on)
+    params.require(:album).permit(:title, :description, :started_on, :before_image, :after_image, :before_record_id, :after_record_id)
   end
 end

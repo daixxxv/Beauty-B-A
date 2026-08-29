@@ -59,6 +59,20 @@
 
       </div>
 
+      <div class="mt-6">
+        <%= f.label :before_image, "Before 写真", class: "block text-sm text-gray-600 mb-2" %>
+        <%= f.file_field :before_image,
+            accept: "image/*",
+            class: "w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100 cursor-pointer" %>
+      </div>
+
+      <div class="mt-6">
+        <%= f.label :after_image, "After 写真", class: "block text-sm text-gray-600 mb-2" %>
+        <%= f.file_field :after_image,
+            accept: "image/*",
+            class: "w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100 cursor-pointer" %>
+      </div>
+
       <div class="mt-10">
 
         <%= f.submit "アルバムを作成する",
