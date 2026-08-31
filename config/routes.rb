@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # アルバムとレコードのネストしたルーティング
   resources :albums do
     resources :records
+    resources :album_records, only: %i[new create edit update destroy]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

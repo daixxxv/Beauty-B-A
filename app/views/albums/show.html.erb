@@ -148,15 +148,3 @@
   </div>
 
 </div>
-
-<%# ===== デバッグ用コード（確認後に削除してください） ===== %>
-<div class="mt-12 p-6 bg-gray-900 text-green-400 rounded-2xl font-mono text-xs leading-relaxed overflow-x-auto">
-  <p class="font-bold text-white mb-2">🔍 デバッグ情報</p>
-  <p>1. before_record_id (保存されているID): <%= @album.before_record_id.inspect %></p>
-  <p>2. @before_record (取得できているか): <%= @before_record.inspect %></p>
-  <p>3. 画像が添付されているか: <%= @before_record&.image&.attached?.inspect %></p>
-  <hr class="my-2 border-gray-700">
-  <p>4. after_record_id (保存されているID): <%= @album.after_record_id.inspect %></p>
-  <p>5. @after_record (取得できているか): <%= @after_record.inspect %></p>
-  <p>6. 画像が添付されているか: <%= @after_record&.image&.attached?.inspect %></p>
-</div>
