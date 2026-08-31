@@ -59,20 +59,68 @@
 
       </div>
 
-      <div class="mt-6">
-        <%= f.label :before_image, "Before 写真", class: "block text-sm text-gray-600 mb-2" %>
-        <%= f.file_field :before_image,
-            accept: "image/*",
-            class: "w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100 cursor-pointer" %>
-      </div>
+      <div class="mt-10 pt-8 border-t border-gray-200">
+        <h3 class="text-lg font-medium text-gray-700 mb-6 text-center">最初の Before / After を登録</h3>
 
-      <div class="mt-6">
-        <%= f.label :after_image, "After 写真", class: "block text-sm text-gray-600 mb-2" %>
-        <%= f.file_field :after_image,
-            accept: "image/*",
-            class: "w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100 cursor-pointer" %>
-      </div>
+        <%= f.fields_for :album_records do |record_f| %>
+          <div class="space-y-6 bg-gray-50/60 p-5 rounded-2xl border border-gray-100">
 
+            <div>
+              <%= record_f.label :title, "B/A タイトル（任意）", class: "block text-sm text-gray-600 mb-2" %>
+              <%= record_f.text_field :title,
+                  class: "w-full border border-gray-200 bg-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200" %>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-gray-100">
+              <p class="text-xs font-bold uppercase text-red-500 mb-3">Before</p>
+              
+              <div class="space-y-3">
+                <div>
+                  <%= record_f.label :before_date, "Before 撮影日", class: "block text-xs text-gray-500 mb-1" %>
+                  <%= record_f.date_field :before_date,
+                      class: "w-full border border-gray-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-blue-300" %>
+                </div>
+
+                <div>
+                  <%= record_f.label :before_image, "Before 写真", class: "block text-xs text-gray-500 mb-1" %>
+                  <%= record_f.file_field :before_image,
+                      accept: "image/*",
+                      class: "w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:bg-red-50 file:text-red-500 hover:file:bg-red-100 cursor-pointer" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-gray-100">
+              <p class="text-xs font-bold uppercase text-blue-500 mb-3">After</p>
+
+              <div class="space-y-3">
+                <div>
+                  <%= record_f.label :after_date, "After 撮影日", class: "block text-xs text-gray-500 mb-1" %>
+                  <%= record_f.date_field :after_date,
+                      class: "w-full border border-gray-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-blue-300" %>
+                </div>
+
+                <div>
+                  <%= record_f.label :after_image, "After 写真", class: "block text-xs text-gray-500 mb-1" %>
+                  <%= record_f.file_field :after_image,
+                      accept: "image/*",
+                      class: "w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100 cursor-pointer" %>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <%= record_f.label :memo, "メモ(任意)", class: "block text-sm text-gray-600 mb-2" %>
+              <%= record_f.text_area :memo,
+                  rows: 3,
+                  placeholder: "変化や感想などを記録できます",
+                  class: "w-full border border-gray-200 bg-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200" %>
+            </div>
+
+          </div>
+        <% end %>
+      </div>
+     
       <div class="mt-10">
 
         <%= f.submit "アルバムを作成する",

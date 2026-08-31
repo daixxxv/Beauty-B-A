@@ -61,7 +61,10 @@
                   </span>
                   <div class="flex items-center space-x-3 text-xs">
                     <%= link_to "編集", edit_album_album_record_path(@album, record), class: "text-blue-500 hover:underline font-medium" %>
-                    <%= link_to "削除", album_album_record_path(@album, record), method: :delete, class: "text-red-400 hover:underline font-medium", data: { turbo_confirm: "本当に削除しますか？" } %>
+                    <%= link_to "削除",
+                      album_album_record_path(@album, record),
+                      data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+                      class: "text-red-400 hover:underline font-medium" %>
                   </div>
                 </div>
 

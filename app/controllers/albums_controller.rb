@@ -7,6 +7,8 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
+
+    @album.album_records.build
   end
 
   def show
@@ -29,6 +31,7 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to albums_path, notice: "アルバムを作成しました。"
     else
+      @album.album_records.build if @album.album_records.empty?
       render :new, status: :unprocessable_entity
     end
   end

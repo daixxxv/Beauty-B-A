@@ -16,6 +16,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
     <% @albums.each do |album| %>
+      <% first_record = album.album_records.first %>
 
       <%= link_to album_path(album), class: "border border-gray-200 rounded-2xl p-6 bg-white shadow-md transition duration-300 flex flex-col justify-between group hover:shadow-lg hover:-translate-y-1 transform" do %>
 
@@ -30,8 +31,8 @@
             <div>
               <p class="text-[10px] tracking-widest uppercase text-blue-500 font-bold mb-1">Before</p>
 
-              <% if album.before_image.attached? %>
-                <%= image_tag album.before_image, class: "w-full aspect-square object-cover rounded-xl" %>
+              <% if first_record&.before_image&.attached? %>
+                <%= image_tag first_record.before_image, class: "w-full aspect-square object-cover rounded-xl" %>
               <% else %>
                 <div class="w-full aspect-square bg-gray-100 rounded-xl flex items-center justify-center">
                   <span class="text-gray-400">No Image</span>
@@ -41,8 +42,8 @@
 
             <div>
               <p class="text-[10px] tracking-widest uppercase text-blue-500 font-bold mb-1">After</p>
-              <% if album.after_image.attached? %>
-                <%= image_tag album.after_image, class: "w-full aspect-square object-cover rounded-xl" %>
+              <% if first_record&.after_image&.attached? %>
+                <%= image_tag first_record.after_image, class: "w-full aspect-square object-cover rounded-xl" %>
               <% else %>
                 <div class="w-full aspect-square bg-gray-100 rounded-xl flex items-center justify-center">
                   <span class="text-gray-400 text-xs">No Image</span>

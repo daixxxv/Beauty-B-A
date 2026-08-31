@@ -11,7 +11,7 @@ class AlbumRecordsController < ApplicationController
     @album_record = @album.album_records.build(album_record_params)
 
     if @album_record.save
-      redirect_to album_path(@album), notice: "B/A を追加しました。"
+      redirect_to edit_album_path(@album), notice: "B/A を追加しました。"
     else
       render :new, status: :unprocessable_entity
     end
