@@ -53,6 +53,9 @@ ja:
       unlocked: "アカウントの凍結を解除しました。ログインしてください。"
   errors:
     messages:
+      too_long: "は%{count}文字以内で入力してください"
+      taken: "はすでに存在します"
+      blank: "を入力してください"
       already_confirmed: "は既に登録済みです。ログインしてください。"
       confirmation_period_expired: "の期限が切れています。%{period}以内に再リクエストしてください。"
       expired: "の期限が切れています。再リクエストしてください。"
