@@ -18,7 +18,9 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @album = current_user.albums.find(params[:id])
+    @album = current_user.albums
+                         .includes(album_records: [before_image_attachment: :blob, after_image_attachment: :blob])
+                         .find(params[:id])
   end
 
   def create

@@ -48,27 +48,64 @@
             class: "w-full rounded-xl border border-gray-200 px-4 py-3 transition duration-200 hover:border-blue-300 focus:border-blue-400 focus:ring-1 focus:ring-blue-400/30 focus:outline-none text-gray-600" %>
       </div>
 
-      <div class="mb-6">
-        <%= f.label :before_image, "Before 写真", class: "block text-sm text-gray-600 mb-2" %>
-        <%= f.file_field :before_image, accept: "image/*", class: "w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100 cursor-pointer" %>
-        <% if @album.before_image.attached? %>
-          <div class="mt-2 flex items-center space-x-2">
-            <span class="text-xs text-gray-400">現在登録中のBefore画像:</span>
-            <%= image_tag @album.before_image, class: "w-12 h-12 object-cover rounded-lg" %>
-          </div>
-        <% end %>
-      </div>
+      <div class="mt-8 pt-8 border-t border-gray-200 mb-8">
 
-  
-      <div class="mb-6">
-        <%= f.label :after_image, "After 写真", class: "block text-sm text-gray-600 mb-2" %>
-        <%= f.file_field :after_image, accept: "image/*", class: "w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-blue-50 file:text-blue-500 hover:file:bg-blue-100 cursor-pointer" %>
-        <% if @album.after_image.attached? %>
-          <div class="mt-2 flex items-center space-x-2">
-            <span class="text-xs text-gray-400">現在登録中のAfter画像:</span>
-            <%= image_tag @album.after_image, class: "w-12 h-12 object-cover rounded-lg" %>
+        <% if @album.album_records.any? %>
+          <div class="space-y-4">
+            <% @album.album_records.each_with_index do |record, index| %>
+              <div class="p-4 border border-gray-200 rounded-2xl bg-gray-50/50 hover:bg-gray-50 transition duration-200">
+                
+                <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                  <span class="font-medium text-gray-700 text-sm">
+                    <%= record.title.presence || "B/A Pair ##{index + 1}" %>
+                  </span>
+                  <div class="flex items-center space-x-3 text-xs">
+                    <%= link_to "編集", edit_album_album_record_path(@album, record), class: "text-blue-500 hover:underline font-medium" %>
+                    <%= button_to "削除", album_album_record_path(@album, record), method: :delete, class: "text-red-400 hover:underline font-medium", data: { turbo_confirm: "本当に削除しますか？" } %>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mt-3">
+                  
+                  <div class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-gray-100">
+                    <% if record.before_image.attached? %>
+                      <%= image_tag record.before_image, class: "w-10 h-10 object-cover rounded-lg flex-shrink-0" %>
+                    <% else %>
+                      <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-[10px] text-gray-400 flex-shrink-0">No Img</div>
+                    <% end %>
+                    <div class="overflow-hidden">
+                      <p class="text-[10px] text-gray-400 font-bold uppercase">Before</p>
+                      <p class="text-xs text-gray-600 truncate"><%= record.before_date&.strftime('%Y/%m/%d') || "日付未登録" %></p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-gray-100">
+                    <% if record.after_image.attached? %>
+                      <%= image_tag record.after_image, class: "w-10 h-10 object-cover rounded-lg flex-shrink-0" %>
+                    <% else %>
+                      <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-[10px] text-gray-400 flex-shrink-0">No Img</div>
+                    <% end %>
+                    <div class="overflow-hidden">
+                      <p class="text-[10px] text-blue-500 font-bold uppercase">After</p>
+                      <p class="text-xs text-gray-600 truncate"><%= record.after_date&.strftime('%Y/%m/%d') || "日付未登録" %></p>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            <% end %>
           </div>
+        <% else %>
+          <p class="text-sm text-gray-400 text-center py-4">まだ B/A がありません</p>
         <% end %>
+
+        <div class="flex justify-center mt-8 mb-6">
+          <%= link_to "＋ 新しい B/A を追加", 
+              new_album_album_record_path(@album), 
+              class: "bg-blue-500 hover:bg-blue-600 text-white text-sm px-5 py-2.5 rounded-full transition duration-300 shadow-sm hover:shadow" %>
+        </div>
+
       </div>
 
       <div>
