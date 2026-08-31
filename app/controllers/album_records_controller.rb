@@ -11,7 +11,7 @@ class AlbumRecordsController < ApplicationController
     @album_record = @album.album_records.build(album_record_params)
 
     if @album_record.save
-      redirect_to album_path(@album), notice: "記録（Record）を追加しました。"
+      redirect_to album_path(@album), notice: "B/A を追加しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -22,7 +22,7 @@ class AlbumRecordsController < ApplicationController
 
   def update
     if @album_record.update(album_record_params)
-      redirect_to album_path(@album), notice: "記録（Record）を更新しました。"
+      redirect_to edit_album_path(@album), notice: "B/A を更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class AlbumRecordsController < ApplicationController
 
   def destroy
     @album_record.destroy
-    redirect_to album_path(@album), notice: "記録（Record）を削除しました。"
+    redirect_to edit_album_path(@album), notice: "B/A を削除しました。"
   end
 
   private

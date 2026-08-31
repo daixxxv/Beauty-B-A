@@ -38,7 +38,7 @@
         <% @album.album_records.each_with_index do |record, index| %>
           <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm">
             
-            <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+            <div class="flex items-center justify-center mb-4 pb-3 border-b border-gray-100">
               <h3 class="text-lg font-medium text-gray-700">
                 <%= record.title.presence || "B/A Pair ##{index + 1}" %>
               </h3>
@@ -78,6 +78,12 @@
 
             </div>
 
+            <% if record.memo.present? %>
+              <div class="mt-4 p-4 bg-gray-50/80 rounded-xl border border-gray-100 text-base text-gray-600 text-center leading-relaxed">
+                <%= safe_join(record.memo.split("\n"), tag.br) %>
+              </div>
+            <% end %>
+
           </div>
         <% end %>
       </div>
@@ -101,6 +107,11 @@
         turbo_confirm: "本当にこのアルバムを削除しますか？"
       } %>
 
+  </div>
+
+  <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+    <%= link_to "アルバム一覧に戻る", albums_path,
+      class: "text-sm text-gray-500 hover:text-blue-300 underline transition duration-300" %>
   </div>
 
 </div>
