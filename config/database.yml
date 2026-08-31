@@ -2,9 +2,9 @@ default: &default
   adapter: postgresql  # ← SQLite3 から PostgreSQL に変更
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch("DATABASE_HOST", "db") %> # 環境変数 DATABASE_HOST がある場合→ その値（GitHub Actions上では 127.0.0.1 など）を使用する環境変数 DATABASE_HOST が未設定の場合→ 第2引数に指定したデフォルト値 "db" を使用する← Docker の db サービスを指定
-  username: postgres  # ← PostgreSQL のユーザー名
-  password: password  # ← PostgreSQL のパスワード
+  host: <%= ENV.fetch("DATABASE_HOST") { ENV.fetch("POSTGRES_HOST", "db") } %>
+  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "password") %>
 
 development:
   <<: *default
