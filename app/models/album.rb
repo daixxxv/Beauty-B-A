@@ -3,6 +3,8 @@ class Album < ApplicationRecord
     has_many :records, dependent: :destroy
     has_many :album_records, dependent: :destroy
 
+    accepts_nested_attributes_for :album_records, allow_destroy: true, reject_if: :all_blank
+
     validates :title, presence: true
     validates :started_on, presence: true
 
