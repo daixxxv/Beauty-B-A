@@ -35,7 +35,7 @@
 
     <% if @album.album_records.any? %>
       <div class="space-y-8">
-        <% @album.album_records.each_with_index do |record, index| %>
+        <% @album_records.each_with_index do |record, index| %>
           <div class="border border-gray-200 rounded-2xl p-6 bg-white shadow-sm">
             
             <div class="flex items-center justify-center mb-4 pb-3 border-b border-gray-100">

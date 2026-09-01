@@ -3,6 +3,8 @@ class AlbumsController < ApplicationController
 
   def index
     @albums = current_user.albums
+                          .includes(album_records: [:before_image_attachment, :after_image_attachment])
+                          .order(created_at: :asc)
   end
 
   def new
@@ -13,7 +15,9 @@ class AlbumsController < ApplicationController
 
   def show
     @album = current_user.albums.find(params[:id])
-    # @album = current_user.albums.includes(:records).find(params[:id])記録機能作ったらこっちに直す
+
+    @album_records = @album.album_records
+                            .includes(:before_image_attachment, :after_image_attachment)
 
     @before_record = @album.before_record
     @after_record = @album.after_record
@@ -21,7 +25,7 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = current_user.albums
-                         .includes(album_records: [before_image_attachment: :blob, after_image_attachment: :blob])
+                         .includes(album_records: [:before_image_attachment, :after_image_attachment])
                          .find(params[:id])
   end
 
