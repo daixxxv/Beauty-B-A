@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    albums_path  # => ログイン後に /albums（アルバム一覧）に飛ぶ
+    albums_path
   end
 end
