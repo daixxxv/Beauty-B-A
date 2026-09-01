@@ -36,6 +36,11 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
 
+      - name: Install dependencies
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
       - name: Install System Dependencies (Chrome for System Spec)
         run: |
           sudo apt-get update
