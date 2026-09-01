@@ -1,6 +1,6 @@
 class Album < ApplicationRecord
     include ImageValidatable
-    
+
     belongs_to :user
     has_many :album_records, dependent: :destroy
 

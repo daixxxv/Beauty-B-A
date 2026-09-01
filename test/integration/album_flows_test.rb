@@ -26,7 +26,6 @@ class AlbumFlowsTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to albums_path
     follow_redirect!
-
   end
 
   test "should redirect to login when accessing new album unauthenticated" do
@@ -38,7 +37,7 @@ class AlbumFlowsTest < ActionDispatch::IntegrationTest
         album: {
           title: "無効なアルバム",
           started_on: Date.today
-        } 
+        }
       }
     end
   end
