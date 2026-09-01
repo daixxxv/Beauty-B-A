@@ -1,5 +1,5 @@
 class AlbumRecordsController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_album
   before_action :set_album_record, only: %i[edit update destroy]
 

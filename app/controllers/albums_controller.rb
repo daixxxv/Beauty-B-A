@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_album, only: %i[show update destroy]
 
   def index
     @albums = current_user.albums
@@ -8,16 +9,14 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new
-
+    @album = current_user.albums.build
     @album.album_records.build
   end
 
   def show
-    @album = current_user.albums.find(params[:id])
-
     @album_records = @album.album_records
                             .includes(:before_image_attachment, :after_image_attachment)
+                            .order(created_at: :asc)
 
     @before_record = @album.before_record
     @after_record = @album.after_record
@@ -41,8 +40,6 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album = current_user.albums.find(params[:id])
-
     if @album.update(album_params)
       redirect_to album_path(@album), notice: "アルバムを更新しました。"
     else
@@ -51,13 +48,15 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = current_user.albums.find(params[:id])
     @album.destroy
-
     redirect_to albums_path, notice: "アルバムを削除しました。"
   end
 
   private
+
+  def set_album
+    @album = current_user.albums.find(params[:id])
+  end
 
   def album_params
     params.require(:album).permit(:title, :description, :started_on, :before_image, :after_image, :before_record_id, :after_record_id, album_records_attributes: [ :id, :title, :memo, :before_date, :after_date, :before_image, :after_image, :_destroy])

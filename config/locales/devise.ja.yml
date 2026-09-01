@@ -53,6 +53,8 @@ ja:
       unlocked: "アカウントの凍結を解除しました。ログインしてください。"
   errors:
     messages:
+      content_type_invalid: "は対応していないファイル形式です"
+      file_size_out_of_range: "のファイルサイズは %{file_size} 未満にしてください"
       too_long: "は%{count}文字以内で入力してください"
       taken: "はすでに存在します"
       blank: "を入力してください"
