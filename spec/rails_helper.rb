@@ -45,6 +45,30 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+Capybara.register_driver :remote_chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless=new')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--window-size=1400,1400')
+
+  if ENV['SELENIUM_DRIVER_URL'].present?
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :remote,
+      url: ENV['SELENIUM_DRIVER_URL'],
+      options: options
+    )
+  else
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      options: options
+    )
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
@@ -55,6 +79,8 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  config.infer_spec_type_from_file_location!
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -82,7 +108,12 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.before(:each, type: :system) do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    driven_by :remote_chrome
+    if ENV['SELENIUM_DRIVER_URL'].present?
+      Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+      Capybara.server_port = 3001
+      Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+    end
   end
 
   config.include FactoryBot::Syntax::Methods
@@ -90,4 +121,5 @@ RSpec.configure do |config|
   config.include ActionDispatch::TestProcess::FixtureFile
 
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
 end

@@ -18,7 +18,7 @@ test:
   database: Beauty_BA_test  # ← テスト用データベース名
   username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD", "password") %>
-  host: <%= ENV.fetch("POSTGRES_HOST", "localhost") %>
+  host: <%= ENV.fetch("POSTGRES_HOST", "db") %>
   port: 5432
 
 

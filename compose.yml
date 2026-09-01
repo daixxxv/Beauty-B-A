@@ -19,6 +19,11 @@ services:
     volumes:
       - redis:/var/lib/redis
 
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+
   web:
     build:
       context: .
@@ -35,6 +40,8 @@ services:
     stdin_open: true
     ports:
       - "3000:3000"
+    environment:
+      - SELENIUM_DRIVER_URL=http://chrome:4444/wd/hub
     volumes:
       - .:/app
       - bundle_data:/usr/local/bundle:cached
@@ -42,6 +49,7 @@ services:
     depends_on:
       - db
       - redis
+      - chrome
 
 volumes:
   postgres_data:
