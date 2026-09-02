@@ -81,9 +81,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "beauty-b-a.onrender.com", protocol: "https" }
 
   config.action_mailer.delivery_method = :resend
-  config.action_mailer.resend_settings = {
-    api_key: ENV["RESEND_API_KEY"]
-  }
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
