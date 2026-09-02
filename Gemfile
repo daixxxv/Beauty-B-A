@@ -18,7 +18,7 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 
 # pin to tailwindcss version 3.4.13
-gem "tailwindcss-ruby", "3.4.13"
+gem "tailwindcss-ruby", "4.3.3"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
