@@ -14,7 +14,7 @@
 
       <%# Before 写真 ＆ 撮影日 %>
       <div class="mt-6 p-4 border border-gray-100 rounded-2xl bg-gray-50/50">
-        <%= f.label :before_image, "Before 写真", class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= f.label :before_image, "Before 写真", class: "block text-sm font-medium text-red-500 mb-2" %>
         <% if @album_record.before_image.attached? %>
           <div class="mb-3">
             <%= image_tag @album_record.before_image, class: "w-20 h-20 object-cover rounded-lg border border-gray-200" %>
@@ -28,7 +28,7 @@
 
       <%# After 写真 ＆ 撮影日 %>
       <div class="mt-6 p-4 border border-gray-100 rounded-2xl bg-gray-50/50">
-        <%= f.label :after_image, "After 写真", class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= f.label :after_image, "After 写真", class: "block text-sm font-medium text-blue-500 mb-2" %>
         <% if @album_record.after_image.attached? %>
           <div class="mb-3">
             <%= image_tag @album_record.after_image, class: "w-20 h-20 object-cover rounded-lg border border-gray-200" %>
